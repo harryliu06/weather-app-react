@@ -4,7 +4,6 @@ import React, { useState } from "react";
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=7c32e1e52f9a4cb452b0b4914df3a1c4`;
 
