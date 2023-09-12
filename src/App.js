@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 
 function App() {
   const [data, setData] = useState({});
@@ -21,7 +21,7 @@ function App() {
   };
 
   const rendered = (
-    <>
+    <div className="container">
       <div className="top">
         <div className="location">
           <p>{data.name}</p>
@@ -38,7 +38,7 @@ function App() {
           <div className="bottom">
             <div className="feels">
               {data.main ? (
-                <p className="bold">{data.main.feels_like}</p>
+                <p className="bold">{data.main.feels_like} °F</p>
               ) : null}
               <p>Feels Like</p>
             </div>
@@ -55,8 +55,18 @@ function App() {
           </div>
         )}
       </>
-    </>
+    </div>
   );
+
+  const override = {
+    display: "block",
+    margin: "auto",
+    borderColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+  };
+
   return (
     <div className="app">
       <div className="search">
@@ -70,12 +80,15 @@ function App() {
       </div>
 
       {isLoading ? (
-        <ClipLoader color={"#EB5406"} loading={isLoading} size={30} />
+        <FadeLoader
+          color={"#EB5406"}
+          loading={isLoading}
+          size={100}
+          cssOverride={override}
+        />
       ) : (
         rendered
       )}
-
-      <div className="container"></div>
     </div>
   );
 }
