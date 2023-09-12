@@ -19,39 +19,21 @@ function App() {
       });
     }
   };
-  return (
-    <div className="app">
-      <div className="search">
-        <input
-          value={location}
-          onChange={(event) => setLocation(event.target.value)}
-          onKeyPress={searchLocation}
-          placeholder="Enter Location"
-          type="text"
-        />
-      </div>
 
-      {isLoading ? 
-      <ClipLoader
-          color={"#EB5406"}
-          loading={isLoading}
-          cssOverride={override}
-          size={30} 
-      /> : }
-
-      <div className="container">
-        <div className="top">
-          <div className="location">
-            <p>{data.name}</p>
-          </div>
-          <div className="temp">
-            {data.main ? <h1>{data.main.temp.toFixed()} °F</h1> : null}
-          </div>
-          <div className="description">
-            {data.weather ? <p>{data.weather[0].description}</p> : null}
-          </div>
+  const rendered = (
+    <>
+      <div className="top">
+        <div className="location">
+          <p>{data.name}</p>
         </div>
-
+        <div className="temp">
+          {data.main ? <h1>{data.main.temp.toFixed()} °F</h1> : null}
+        </div>
+        <div className="description">
+          {data.weather ? <p>{data.weather[0].description}</p> : null}
+        </div>
+      </div>
+      <>
         {data.name !== undefined && (
           <div className="bottom">
             <div className="feels">
@@ -72,7 +54,28 @@ function App() {
             </div>
           </div>
         )}
+      </>
+    </>
+  );
+  return (
+    <div className="app">
+      <div className="search">
+        <input
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
+          onKeyPress={searchLocation}
+          placeholder="Enter Location"
+          type="text"
+        />
       </div>
+
+      {isLoading ? (
+        <ClipLoader color={"#EB5406"} loading={isLoading} size={30} />
+      ) : (
+        rendered
+      )}
+
+      <div className="container"></div>
     </div>
   );
 }
