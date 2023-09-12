@@ -1,15 +1,19 @@
 import axios from "axios";
 import React, { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=7c32e1e52f9a4cb452b0b4914df3a1c4`;
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
+      setIsLoading(true);
       axios.get(url).then((resp) => {
+        setIsLoading(false);
         setData(resp.data);
         console.log(resp.data);
       });
@@ -26,6 +30,14 @@ function App() {
           type="text"
         />
       </div>
+
+      {isLoading ? 
+      <ClipLoader
+          color={"#EB5406"}
+          loading={isLoading}
+          cssOverride={override}
+          size={30} 
+      /> : }
 
       <div className="container">
         <div className="top">
