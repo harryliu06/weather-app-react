@@ -12,17 +12,11 @@ function App() {
   const searchLocation = (event) => {
     if (event.key === "Enter") {
       setIsLoading(true);
-      try {
-        axios.get(url).then((resp) => {
-          setIsLoading(false);
-          setData(resp.data);
-          console.log(resp.data);
-        });
-      } catch (error) {
-        console.log(error.stack);
-      } finally {
-        console.log(" finished accessing api ");
-      }
+      axios.get(url).then((resp) => {
+        setIsLoading(false);
+        setData(resp.data);
+        console.log(resp.data);
+      });
     }
   };
 
