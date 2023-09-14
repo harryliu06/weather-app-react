@@ -6,17 +6,26 @@ function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=7c32e1e52f9a4cb452b0b4914df3a1c4`;
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
       setIsLoading(true);
-      axios.get(url).then((resp) => {
-        setIsLoading(false);
-        setData(resp.data);
-        console.log(resp.data);
-      });
+      axios
+        .get(url)
+        .then((resp) => {
+          setIsLoading(false);
+          setData(resp.data);
+          console.log(resp.data);
+          setError(null);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          console.error("Error fetching Data", error);
+          setError("The entered city doesn't exist");
+        });
     }
   };
 
@@ -89,6 +98,9 @@ function App() {
       ) : (
         rendered
       )}
+      <div className="error-container">
+        {error && <div className="error-message">{error}</div>}
+      </div>
     </div>
   );
 }

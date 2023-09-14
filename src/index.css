@@ -103,3 +103,14 @@ h1{
 .bold { 
   font-weight: 700;
 }
+
+.error-container {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.error-message {
+  text-align: center;
+  font-size: 1.9rem;
+}
