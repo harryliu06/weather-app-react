@@ -95,10 +95,11 @@ function App() {
           size={100}
           cssOverride={override}
         />
+      ) : error ? (
+        <div className="error-message">{error}</div>
       ) : (
         rendered
       )}
-      {error && <div className="error-message">{error}</div>}
     </div>
   );
 }
