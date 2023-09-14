@@ -98,9 +98,7 @@ function App() {
       ) : (
         rendered
       )}
-      <div className="error-container">
-        {error && <div className="error-message">{error}</div>}
-      </div>
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 }
