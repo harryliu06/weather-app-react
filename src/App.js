@@ -88,18 +88,20 @@ function App() {
         />
       </div>
 
-      {isLoading ? (
-        <FadeLoader
-          color={"#EB5406"}
-          loading={isLoading}
-          size={100}
-          cssOverride={override}
-        />
-      ) : error ? (
-        <div className="error-message">{error}</div>
-      ) : (
-        rendered
-      )}
+      <div className="result">
+        {isLoading ? (
+          <FadeLoader
+            color={"#EB5406"}
+            loading={isLoading}
+            size={100}
+            cssOverride={override}
+          />
+        ) : error ? (
+          <div className="error-message">{error}</div>
+        ) : (
+          rendered
+        )}
+      </div>
     </div>
   );
 }

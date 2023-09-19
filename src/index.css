@@ -12,6 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: transparent;
 }
 
 p{
@@ -102,7 +103,14 @@ h1{
   font-weight: 700;
 }
 
-.error-message {
+.result .error-message {
   font-size: 1.9rem;
   text-align: center;
+  height: 100vh;
 }
+
+.result {
+  height: auto;
+  width: 100%
+}
+
